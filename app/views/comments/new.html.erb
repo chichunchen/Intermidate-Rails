@@ -1,0 +1,13 @@
+<h1 class="text-center">新增留言</h1>
+
+<div class="col-md-4 col-md-offset-4">
+
+  <%= form_for [@board,@comment] do |f| %>
+
+	<%= f.label :content %> <br>
+	<%= f.text_area :content, :size => "40*40" %> <br>
+	<%= f.submit "Create" %>
+	
+<% end %> 
+
+</div>

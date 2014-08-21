@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-	before_action :authenticate_user! 
+	before_action :authenticate_user!, :except => [:index, :show]
 	
 	def index
 		@boards = Board.all
@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
 
 	def show
 		@board = Board.find(params[:id])
+		@comments = @board.comments
 	end
 
 	def new
