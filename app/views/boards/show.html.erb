@@ -1,35 +1,25 @@
 <div class="col-md-12">
-  <div class="group">
-  	<% if current_user && @board.editable_by?(current_user) %>
-	    <%= 
-	    	link_to("修改留言板", edit_board_path(@board) , :class => "btn btn-primary pull-right")
-	    %> 
-    <% end %>
-      <%= link_to("留言", new_board_comment_path(@board) , :class => "btn btn-warning pull-right")
-      %>
-  </div>
-  <h2> <%= @board.title %> </h2>
-  <p> posted by <%= User.find(@board.user_id).email %> </p> 
-  <p> on <%= @board.created_at %> </p><br>
-  <p> <%= @board.description %> </p> 
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>留言</th>
-        <th>作者</th>
-        <th>留言時間</th>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @comments.each do |comment| %> 
-        <tr>
-          <td> <%= comment.content %> </td>
-          <td> <%= User.find(comment.user_id).email %> </td>
-          <td> <%= comment.created_at %> </td>
-          <% if current_user && comment.editable_by?(current_user) %>
-            <td> <%= link_to("修改", 
+  <div class="group">
+    <% if current_user && @board.editable_by?(current_user) %>
+      <%= 
+        link_to("修改留言板", edit_board_path(@board) , :class => "btn btn-primary pull-right")
+      %> 
+    <% end %>
+  </div>
+
+  <h2> <%= @board.title %> </h2>
+  <h4> <%= @board.description %> </h4> <br>
+  <p> 版主： <%= User.find(@board.user_id).email %> </p> 
+  <p> on <%= @board.created_at %> </p> <hr>
+
+  <% @comments.each do |comment| %> 
+      <br><br><p> <%= User.find(comment.user_id).email %>說： </p>
+      <h4> <%= comment.content %> </h4><br>
+      <p>at <%= comment.created_at %> </p>
+      <% if current_user && comment.editable_by?(current_user) %>
+            <p> 
+                 <%= link_to("修改", 
                              edit_board_comment_path(comment.board, comment), 
                              :class => "btn btn-default btn-xs")%>
 
@@ -37,10 +27,16 @@
                              board_comment_path(comment.board, comment), 
                              :class => "btn btn-default btn-xs ",
                              :method => :delete,
-                             data: { confirm: "Are you sure?" } )%></td>
-          <% end %>
-        </tr>
-      <% end %> 
-    </tbody>
-  </table>
+                             data: { confirm: "Are you sure?" } )%>
+            </p>
+      <% end %>
+      <hr>
+  <% end %> 
+
+  <div class="group">
+      <%= link_to("留言", new_board_comment_path(@board) , :class => "btn btn-warning pull-left")
+      %>
+      <br><br>
+  </div>
+      
 </div>
