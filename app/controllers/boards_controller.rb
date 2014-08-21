@@ -2,12 +2,12 @@ class BoardsController < ApplicationController
 	before_action :authenticate_user!, :except => [:index, :show]
 	
 	def index
-		@boards = Board.page(params[:page]).per(10)
+		@boards = Board.order("created_at DESC").page(params[:page]).per(10)
 	end
 
 	def show
 		@board = Board.find(params[:id])
-		@comments = @board.comments
+		@comments = @board.comments.page(params[:page]).per(4)
 	end
 
 	def new
