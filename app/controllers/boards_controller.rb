@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
 	before_action :authenticate_user!, :except => [:index, :show]
 	
 	def index
-		@boards = Board.all
+		@boards = Board.page(params[:page]).per(10)
 	end
 
 	def show
@@ -32,7 +32,7 @@ class BoardsController < ApplicationController
 		@board = current_user.boards.find(params[:id])
 
 		if @board.update(board_params)
-			redirect_to boards_path, :notice => "討論版修改成功"
+			redirect_to board_path(@board), :notice => "討論版修改成功"
 		else
 			render :edit
 		end
