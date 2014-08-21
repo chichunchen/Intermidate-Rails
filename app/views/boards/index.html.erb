@@ -7,8 +7,8 @@
     <thead> 
       <tr>
         <td> # </td>
-        <td> Title </td>
-        <td> Description </td>
+        <td> 標題 </td>
+        <td> 內文 </td>
       </tr>
     </thead>
 
@@ -18,15 +18,18 @@
       <td> # </td>
       <td>  <%= link_to(board.title, board_path(board)) %> </td>
       <td>  <%= board.description %> </td>
-      <td>  <%= link_to("Edit", 
+      <td>  
+          <% if current_user && board.editable_by?(current_user) %>
+            <%= link_to("修改", 
                         edit_board_path(board), 
                         :class => "btn btn-sm btn-default")%>
 
-            <%= link_to("Delete", 
+            <%= link_to("刪除", 
                         board_path(board), 
                         :class => "btn btn-sm btn-default", 
                         :method=>:delete,
                         data: { confirm: "Are you sure?" } )%></td> 
+          <% end %>
     </tr>
             <% end %> 
     </tbody>
