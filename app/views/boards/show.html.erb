@@ -1,8 +1,10 @@
 <div class="col-md-12">
   <div class="group">
-    <%= 
-    	link_to("Edit", edit_board_path(@board) , :class => "btn btn-primary pull-right")
-    %> 
+  	<% if current_user && @board.editable_by?(current_user) %>
+	    <%= 
+	    	link_to("Edit", edit_board_path(@board) , :class => "btn btn-primary pull-right")
+	    %> 
+    <% end %>
   </div>
   <h2> <%= @board.title %> </h2>
   <p> posted by <%= User.find(@board.user_id).email %> </p> 

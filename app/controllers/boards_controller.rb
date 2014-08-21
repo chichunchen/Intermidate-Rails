@@ -18,20 +18,29 @@ class BoardsController < ApplicationController
 	end
 
 	def create
-		current_user.boards.create(board_params)
-		redirect_to boards_path
+		@board = current_user.boards.new(board_params)
+
+		if @board.save
+			redirect_to boards_path, :notice => "留言板新增成功"
+		else
+			render :new
+		end 
 	end
 
 	def update
 		@board = current_user.boards.find(params[:id])
-		@board.update!(board_params)
-		redirect_to boards_path
+
+		if @board.update(board_params)
+			redirect_to boards_path, :notice => "討論版修改成功"
+		else
+			render :edit
+		end
 	end
 
 	def destroy
 		@board = current_user.boards.find(params[:id])
 		@board.destroy
-		redirect_to boards_path
+		redirect_to boards_path, :alert => "討論版已刪除"
 	end
 
 	private 

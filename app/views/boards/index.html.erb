@@ -7,30 +7,36 @@
     <thead> 
       <tr>
         <td> # </td>
-        <td> 標題 </td>
+        <td> 主題 </td>
         <td> 內文 </td>
+        <td>     </td>
+        <td> 作者 </td>
+        <td> 更新時間 </td>
       </tr>
     </thead>
 
     <tbody>
             <% @boards.each do |board| %> 
-    <tr>
-      <td> # </td>
-      <td>  <%= link_to(board.title, board_path(board)) %> </td>
-      <td>  <%= board.description %> </td>
-      <td>  
-          <% if current_user && board.editable_by?(current_user) %>
-            <%= link_to("修改", 
-                        edit_board_path(board), 
-                        :class => "btn btn-sm btn-default")%>
+                <tr>
+                  <td> # </td>
+                  <td>  <%= link_to(board.title, board_path(board)) %> </td>
+                  <td>  <%= board.description %> </td>
+                  <td>  
+                      <% if current_user && board.editable_by?(current_user) %>
+                        <%= link_to("修改", 
+                                    edit_board_path(board), 
+                                    :class => "btn btn-sm btn-default")%>
 
-            <%= link_to("刪除", 
-                        board_path(board), 
-                        :class => "btn btn-sm btn-default", 
-                        :method=>:delete,
-                        data: { confirm: "Are you sure?" } )%></td> 
-          <% end %>
-    </tr>
+                        <%= link_to("刪除", 
+                                    board_path(board), 
+                                    :class => "btn btn-sm btn-default", 
+                                    :method=>:delete,
+                                    data: { confirm: "Are you sure?" } )%>
+                      <% end %>
+                  </td> 
+                  <td> <%= User.find(board.user_id).email %> </td>
+                  <td> <%= board.created_at %> </td>
+                </tr>
             <% end %> 
     </tbody>
   </table>
