@@ -8,6 +8,7 @@ class BoardsController < ApplicationController
 	def show
 		@board = Board.find(params[:id])
 		@comments = @board.comments.page(params[:page]).per(4)
+		@comment = @board.comments.new
 	end
 
 	def new

@@ -2,10 +2,6 @@ class CommentsController < ApplicationController
 	before_action :find_board
 	before_action :authenticate_user!
 
-	def new
-		@comment = @board.comments.new
-	end
-
 	def create
     	@comment = @board.comments.new(comment_params)
     	@comment.author = current_user
@@ -13,7 +9,7 @@ class CommentsController < ApplicationController
 		if @comment.save
 			redirect_to board_path(@board), :notice => "留言成功"
 		else
-			render :new
+			redirect_to board_path(@board)
 		end 
 	end
 
