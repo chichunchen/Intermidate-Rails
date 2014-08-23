@@ -7,9 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 create_account = User.create([email: '12345678@gmail.com', password: '12345678', password_confirmation: '12345678'])
 
-create_groups = for i in 1..20 do
-                  Board.create!([title: "Group no.#{i}", description: "這是用種子建立的第 #{i} 個討論版", user_id: "1"])
-                  for k in 1..30 do
+
+create_boards = for i in 1..30 do
+                  Board.create!([title: "留言板 no.#{i}", description: "這是用種子建立的第 #{i} 個討論ㄗㄝˊ版", user_id: "1"])
+                  for k in 1..50 do
                     Comment.create!([board_id: "#{i}",content: "這是用種子建立的第 #{k} 個留言", user_id: "1"])
                   end
                 end

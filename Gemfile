@@ -6,7 +6,7 @@ gem 'devise'
 
 gem 'bootstrap-sass'
 
-gem "kaminari"
+gem 'will_paginate-bootstrap'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'

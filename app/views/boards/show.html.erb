@@ -33,6 +33,8 @@
       <hr>
   <% end %> 
 
+  <%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+
   <h2 class="text-center">新增留言</h2><br>
   <div class="col-md-4 col-md-offset-4">
     <%= form_for [@board,@comment] do |f| %>
@@ -42,6 +44,4 @@
       </div>
     <% end %> 
   </div>
-
-  <center><%= paginate @comments %></center>
 </div>

@@ -44,5 +44,7 @@
             <% end %> 
     </tbody>
   </table>
-  <center><%= paginate @boards %></center>
+  <center>
+    <%= will_paginate @boards, renderer: BootstrapPagination::Rails %>
+  </center>
 </div>
