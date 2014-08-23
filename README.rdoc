@@ -5,6 +5,3 @@ user/id 顯示user的board, comment
 
 problem:
 Have problems showing error messages
-
-有空再做：
-paginate in bootstrap
