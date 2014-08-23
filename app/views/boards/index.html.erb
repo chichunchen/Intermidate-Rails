@@ -34,8 +34,12 @@
                                     data: { confirm: "Are you sure?" } )%>
                       <% end %>
                   </td> 
-                  <td> <%= User.find(board.user_id).email %> </td>
-                  <td> <%= board.created_at %> </td>
+                  <td> 
+                    <%= link_to(User.find(board.user_id).email, user_path(User.find(board.user_id))) %> 
+                  </td>
+                  <td> 
+                    <%= board.created_at %> 
+                  </td>
                 </tr>
             <% end %> 
     </tbody>
