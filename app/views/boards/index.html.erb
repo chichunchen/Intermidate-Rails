@@ -3,6 +3,13 @@
     <%= link_to("新增留言板", new_board_path , :class => "btn btn-primary pull-right" ) %>
   </div>
 
+  <%= form_tag boards_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+  <% end %>
+
   <table class="table table-hover">
     <thead> 
       <tr>
@@ -20,7 +27,7 @@
                 <tr>
                   <td> # </td>
                   <td>  <%= link_to(board.title, board_path(board)) %> </td>
-                  <td>  <%= board.description %> </td>
+                  <td>  <%= truncate(board.description, :length => 30) %> </td>
                   <td>  
                       <% if current_user && board.editable_by?(current_user) %>
                         <%= link_to("修改", 

@@ -2,7 +2,11 @@ class BoardsController < ApplicationController
 	before_action :authenticate_user!, :except => [:index, :show]
 	
 	def index
-		@boards = Board.page(params[:page]).per_page(15).order("created_at DESC")
+		# @boards = Board.page(params[:page]).per_page(15).order("created_at DESC")
+		@search = Board.search do
+			fulltext params[:search]
+		end
+		@boards = @search.results
 	end
 
 	def show

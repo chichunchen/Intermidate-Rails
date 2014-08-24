@@ -9,13 +9,13 @@
   </div>
 
   <h2> <%= @board.title %> </h2>
-  <h4> <%= @board.description %> </h4> <br>
+  <h4> <%= simple_format(@board.description) %> </h4> <br>
   <p class="pull-right"> 版主： <%= User.find(@board.user_id).email %> </p>
   <p> on <%= @board.created_at %> </p> <hr>
 
   <% @comments.each do |comment| %> 
       <p> <%= User.find(comment.user_id).email %>： </p>
-      <h4> <%= comment.content %> </h4><br>
+      <h4> <%= simple_format(comment.content) %> </h4><br>
       <p>at <%= comment.created_at %> </p>
       <% if current_user && comment.editable_by?(current_user) %>
             <p> 

@@ -4,7 +4,9 @@
 		<%= f.label :title %>
 		<%= f.text_field :title, :class => "form-control" %> <br>
 		<%= f.label :description %>
-		<%= f.text_area :description, :class => "form-control" %> 
+		<%= f.text_area :description, :class => "form-control" %> <br>
+		<%= f.label :category_id %> 
+		<%= collection_select(:board, :category_id, Category.all, :id, :name) %>
 		<hr>
 		<%= f.submit "Create", :class => "btn btn-primary" %>
 	<% end %> 
