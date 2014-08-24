@@ -1,7 +1,6 @@
-to-do:
-user 增加 board_id, comment_id 欄位
-user/id 顯示user的board, comment
+
+** category id fill in board when created
+* user/id 顯示user的board, comment
 
 
-problem:
-Have problems showing error messages
+* show error messages
