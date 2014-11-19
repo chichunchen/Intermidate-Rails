@@ -1,7 +1,7 @@
 Intermediate rails 
 ==============
 
-This app is he practice of [Intermediate Rails](http://railsbridge-docs-zh-tw.herokuapp.com/intermediate-rails/).
+This app is for practicing rails, from [Intermediate Rails](http://railsbridge-docs-zh-tw.herokuapp.com/intermediate-rails/).
 
 
 Before "rails s"
@@ -9,7 +9,7 @@ Before "rails s"
 	
 	bundle exec rake sunspot:solr:start
 
-* Learn more : [Sunspot doc](https://github.com/sunspot/sunspot)
+Learn more : [Sunspot doc](https://github.com/sunspot/sunspot)
 
 
 To do
